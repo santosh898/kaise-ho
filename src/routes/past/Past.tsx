@@ -17,7 +17,7 @@ const Past: FC<RoutableProps> = () => {
   const [selectedAttribute, setSelectedAttribute] = useState(attributeNames[0]);
 
   const highsAndLows = useMemo(() => {
-    return allWeeks.reverse().map((week, index) => ({
+    return [...allWeeks].reverse().map((week, index) => ({
       title: `Week ${allWeeks.length - index}`,
       date: format(parseISO(week.date), "MMM dd"),
       subtitle: `High: ${
