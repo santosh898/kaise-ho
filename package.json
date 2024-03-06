@@ -1,0 +1,23 @@
+{
+  "name": "kaise-ho",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.2",
+    "charts.css": "^1.1.0",
+    "date-fns": "^3.3.1",
+    "preact": "^10.19.5",
+    "preact-router": "^4.1.2"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.8.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4"
+  }
+}
