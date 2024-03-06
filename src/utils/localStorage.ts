@@ -11,6 +11,18 @@ export interface Update {
   date: string;
 }
 
+const attributeKeys = [
+  "Money",
+  "Sex",
+  "Sleep",
+  "Motivation",
+  "Work",
+  "Diet",
+  "Exercise",
+  "Substance Use",
+  "Emotional Balance",
+];
+
 const findThisWeekIndex: (allWeeks: Update[]) => [number, Date] = (
   allWeeks
 ) => {
@@ -29,7 +41,8 @@ export const getAllWeeks = () => {
 export const getThisWeek = () => {
   const allWeeks = getAllWeeks();
   const [thisWeekIndex] = findThisWeekIndex(allWeeks);
-  return allWeeks[thisWeekIndex].attributes;
+  if (thisWeekIndex > -1) return allWeeks[thisWeekIndex].attributes;
+  return generateDefaultAttributes();
 };
 
 export const updateThisWeek = (attributes: Update["attributes"]) => {
@@ -49,24 +62,12 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateRandomAttributes(): Record<string, number> {
+function generateDefaultAttributes(random = false): Record<string, number> {
   const dummyAttributes: Record<string, number> = {};
-  const attributeKeys = [
-    "Money",
-    "Sex",
-    "Sleep",
-    "Motivation",
-    "Work",
-    "Diet",
-    "Exercise",
-    "Substance Use",
-    "Emotional Balance",
-  ];
 
   for (const key of attributeKeys) {
-    dummyAttributes[key] = getRandomInt(0, 10);
+    dummyAttributes[key] = random ? getRandomInt(0, 10) : 0;
   }
-
   return dummyAttributes;
 }
 
@@ -79,7 +80,7 @@ export const fillDummyData: () => void = () => {
     const formattedDate = formatISO(sunday);
 
     updates.push({
-      attributes: generateRandomAttributes(),
+      attributes: generateDefaultAttributes(true),
       date: formattedDate,
     });
   }
