@@ -1,10 +1,11 @@
-import { FC, TargetedEvent, useMemo, useReducer } from "preact/compat";
+import { FC, useCallback, useReducer } from "preact/compat";
 import { Link, RoutableProps } from "preact-router";
 import {
   updateThisWeek,
   getThisWeek,
   // fillDummyData,
 } from "../../utils/localStorage";
+import RadarChart from "./RadarChart";
 
 // Only once on load
 // fillDummyData();
@@ -42,34 +43,21 @@ const ThisWeek: FC<RoutableProps> = () => {
 
   const [attributes, dispatch] = useReducer(reducer, initialState);
 
-  const onAtrributeChange = (e: TargetedEvent<HTMLInputElement, Event>) => {
-    dispatch(
-      updateAttribute(e.currentTarget.name, parseInt(e.currentTarget.value))
-    );
-  };
-
-  const attributeNames = useMemo(() => {
-    return Object.keys(attributes);
-  }, [attributes]);
+  const onAttributeChange = useCallback(
+    (attributeName: string, value: number) => {
+      dispatch(updateAttribute(attributeName, value));
+    },
+    []
+  );
 
   return (
     <div>
       <h1>Kaise Ho?</h1>
       <h4>This Week</h4>
-      {attributeNames.map((attribute) => (
-        <div key={attribute}>
-          <p>{attribute}</p>
-          <input
-            name={attribute}
-            type="range"
-            value={attributes[attribute]}
-            onInput={onAtrributeChange}
-            min={0}
-            max={10}
-            step={0.1}
-          />
-        </div>
-      ))}
+      <RadarChart
+        attributes={attributes}
+        onAttributesChange={onAttributeChange}
+      />
       <p>
         <Link href="/past">&#8592; Past Weeks</Link>
       </p>

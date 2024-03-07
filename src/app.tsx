@@ -6,7 +6,7 @@ import Past from "./routes/past";
 export function App() {
   return (
     <Router>
-      <ThisWeek path="this-week" />
+      <ThisWeek default path="this-week" />
       <Past path="/past" />
     </Router>
   );
