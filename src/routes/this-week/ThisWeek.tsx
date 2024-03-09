@@ -11,6 +11,7 @@ import RadarChart from "./RadarChart";
 // fillDummyData();
 
 const ThisWeek: FC<RoutableProps> = () => {
+
   const initialState = getThisWeek();
 
   // Define reducer function
