@@ -2,14 +2,14 @@ import { useEffect, useRef } from "preact/hooks";
 import { Update } from "../../utils/localStorage";
 
 interface RadarChartProps {
-  attributes: Update["attributes"];
-  onAttributesChange: (attributeName: string, value: number) => void;
+  attributes: Update["attributes"]; //localStorage Data
+  onAttributesChange: (attributeName: string, value: number) => void; // I dont get this 
 }
 
 const WIDTH = 1200;
 const HEIGHT = 1200;
 
-const colors = [
+const colors = [ 
   "red",
   "green",
   "blue",
@@ -22,10 +22,10 @@ const colors = [
   "fuchsia",
   "teal",
   "gold",
-];
+]; //Will be updating this accordingly 
 
-const RadarChart = ({ attributes, onAttributesChange }: RadarChartProps) => {
-  const ref = useRef<HTMLCanvasElement>(null);
+const RadarChart = ({ attributes, onAttributesChange }: RadarChartProps) => { 
+  const ref = useRef<HTMLCanvasElement>(null); //ref for the canvas, to update localStorage whenever there is a change noted
 
   const getCoordsFromAngle = (
     x: number,
