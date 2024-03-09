@@ -18,7 +18,7 @@ const attributeKeys = [
   "Motivation",
   "Work",
   "Diet",
-  "Exercise",
+  "Fitness Mind & Body",
   "Substance Use",
   "Emotional Balance",
 ];

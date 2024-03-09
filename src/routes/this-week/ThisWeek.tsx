@@ -11,6 +11,7 @@ import RadarChart from "./RadarChart";
 // fillDummyData();
 
 const ThisWeek: FC<RoutableProps> = () => {
+
   const initialState = getThisWeek();
 
   // Define reducer function
@@ -50,6 +51,12 @@ const ThisWeek: FC<RoutableProps> = () => {
     []
   );
 
+  const saveShareHandler = () => {
+    const url = location.href;
+    navigator.clipboard.writeText(url);
+    console.log("clipboard data:", navigator.clipboard)
+  }
+
   return (
     <div>
       <h1>Kaise Ho?</h1>
@@ -58,6 +65,9 @@ const ThisWeek: FC<RoutableProps> = () => {
         attributes={attributes}
         onAttributesChange={onAttributeChange}
       />
+      <button onClick={saveShareHandler}>
+        Save & Share
+      </button>
       <p>
         <Link href="/past">&#8592; Past Weeks</Link>
       </p>
